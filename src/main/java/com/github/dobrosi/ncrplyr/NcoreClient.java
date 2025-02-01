@@ -1,6 +1,7 @@
 package com.github.dobrosi.ncrplyr;
 
 import java.io.IOException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class NcoreClient extends HttpClient {
     private static final Map<SearchParameters, List<String>> CACHE = new HashMap<>();
 
     @Value("${ncore.url:https://ncore.pro}")
-    private String urlPrefix;
+    private URL baseUrl;
 
     @Value("${ncore.user}")
     private String user;
@@ -52,20 +53,20 @@ public class NcoreClient extends HttpClient {
                                         URLEncoder.encode(title, StandardCharsets.UTF_8)));
         List<String> result = getTorrentIds(id.imdbid, doc).stream()
             .map(
-                tid -> format("%s/torrents.php?action=download&key=%s&id=%s", urlPrefix, clientKey, tid))
+                tid -> format("%s/torrents.php?action=download&key=%s&id=%s", baseUrl, clientKey, tid))
             .toList();
         CACHE.put(id, result);
         return result;
     }
 
     @Override
-    protected String getUrlPrefix() {
-        return urlPrefix;
+    protected URL getBaseUrl() {
+        return baseUrl;
     }
 
     @Override
     protected String getLoginUrl() {
-        return format("%s/login.php", urlPrefix);
+        return format("%s/login.php", baseUrl);
     }
 
     @Override

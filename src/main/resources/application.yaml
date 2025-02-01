@@ -1,15 +1,9 @@
 ncore:
-  user: ncoreandris
-  password: Pender123.
   type: all_own # all_own, xvid, hd, xvid_hun, hd_hun
 downloadsPath: ${user.home}/.config/ncrplyr/downloads
 waitingTime: 3s
 torrentLimit: 1
 host: http://localhost:8080
-digi-online-client:
-  user: dobrosi@gmail.com
-  password: Pender123!
-  headless: true
 
 spring:
   thymeleaf: # Thymeleaf
