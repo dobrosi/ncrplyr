@@ -135,6 +135,9 @@ public class VideoStreamService {
     }
 
     private static void addMeta(Playlist playlist, String rel, String content) {
+        if (content != null) {
+            return;
+        }
         Meta m = new Meta();
         m.setRel(rel);
         m.setContent(content);
