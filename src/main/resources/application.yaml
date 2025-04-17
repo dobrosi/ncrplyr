@@ -1,10 +1,7 @@
-ncore:
-  type: all_own # all_own, xvid, hd, xvid_hun, hd_hun
-downloadsPath: ${user.home}/.config/ncrplyr/downloads
-waitingTime: 3s
-torrentLimit: 1
-host: http://localhost:8080
-
+admin:
+  username: sba
+  password: sba12358
 spring:
-  thymeleaf: # Thymeleaf
-    cache: false
+  config.import: optional:configserver:http://${admin.username}:${admin.password}@localhost:8888/config
+  application.name: demo
+  profiles.active: development
